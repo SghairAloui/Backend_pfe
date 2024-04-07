@@ -11,6 +11,7 @@
 	</parent><groupId>Pfe</groupId>
 	<artifactId>GestionProjet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>ProjectManagement</name>
 	<description>Project_Management_2024 </description>
 	<properties>
@@ -24,6 +25,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+    			<groupId>org.springframework.boot</groupId>
+   			 <artifactId>spring-boot-starter-tomcat</artifactId>
+   			 <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
@@ -101,6 +107,14 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+           			 <groupId>org.apache.maven.plugins</groupId>
+            			 <artifactId>maven-war-plugin</artifactId>
+            			 <version>3.3.2</version> <!-- Use the latest version -->
+            		<configuration>
+                		<!-- Add configuration if needed -->
+           	        </configuration>
+        </plugin>
 		</plugins>
 	</build>
 	<repositories>
