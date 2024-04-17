@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -11,7 +11,6 @@
 	</parent><groupId>Pfe</groupId>
 	<artifactId>GestionProjet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>ProjectManagement</name>
 	<description>Project_Management_2024 </description>
 	<properties>
@@ -25,11 +24,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-    			<groupId>org.springframework.boot</groupId>
-   			 <artifactId>spring-boot-starter-tomcat</artifactId>
-   			 <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
@@ -107,14 +101,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-           			 <groupId>org.apache.maven.plugins</groupId>
-            			 <artifactId>maven-war-plugin</artifactId>
-            			 <version>3.3.2</version> <!-- Use the latest version -->
-            		<configuration>
-                		<!-- Add configuration if needed -->
-           	        </configuration>
-        </plugin>
 		</plugins>
 	</build>
 	<repositories>
