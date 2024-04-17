@@ -8,6 +8,8 @@ public class SignupRequest {
 
     private String password;
 
+
+
     public String getEmail() {
         return email;
     }

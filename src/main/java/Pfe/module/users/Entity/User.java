@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "mod_user")
 public class User {
@@ -20,6 +23,32 @@ public class User {
         private String password;
 
         private String email;
+
+
+
+        private String verificationCode;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles = new ArrayList<>();
 
         public Long getId() {
             return id;
@@ -52,4 +81,6 @@ public class User {
         public void setEmail(String email) {
             this.email = email;
         }
+
+
     }
