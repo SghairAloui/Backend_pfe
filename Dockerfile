@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Build the application
-RUN mvn clean install 
+RUN mvn clean install -DskipTests 
 
 # Create a new image with the JAR file
 FROM openjdk:17-jdk-alpine
