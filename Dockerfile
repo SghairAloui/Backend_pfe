@@ -1,31 +1,29 @@
-# Use official OpenJDK base image with Java 17
-FROM openjdk:17-jdk-alpine as builder
+# Use an official OpenJDK runtime as a parent image
+FROM maven:3.8.4-jdk-8-slim AS build
 
-# Use official Maven Docker image
-FROM maven:3.8.4-openjdk-17 AS maven
-
-# Set the working directory in the Maven container
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy the Maven project file
-COPY pom.xml .
+# Copy the source code
+COPY . .
 
-# Add any additional Maven settings or configurations here, if needed
+# Build the application
+RUN mvn clean install 
 
-# Build project skipping tests
-RUN mvn clean install -DskipTests
-
-# Switch back to the OpenJDK base image
+# Create a new image with the JAR file
 FROM openjdk:17-jdk-alpine
 
-# Set the working directory in the final container
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy the packaged jar file from the Maven container to the final container
-COPY --from=maven /app/target/GestionProjet-0.0.1-SNAPSHOT.jar /app/GestionProjet-0.0.1-SNAPSHOT.jar
+# Copy the JAR file from the build image
+COPY --from=build /app/target/GestionProjet-0.0.1-SNAPSHOT.jar /app/GestionProjet-0.0.1-SNAPSHOT.jar
 
-# Expose the port that the application runs on
-EXPOSE 9090
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
 
-# Specify the command to run your Spring Boot application
-CMD ["java", "-jar", "GestionProjet-0.0.1-SNAPSHOT.jar"]
+# Define environment variable
+ENV JAVA_OPTS=""
+
+# Run the Java application
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar GestionProjet-0.0.1-SNAPSHOT.jar"]
