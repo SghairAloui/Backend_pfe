@@ -1,8 +1,14 @@
 # Use official OpenJDK base image with Java 17
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-jdk-alpine as builder
 
 # Set the working directory in the container
 WORKDIR /app
+
+# Copy the Maven project file
+COPY pom.xml .
+
+# Build project skipping tests
+RUN mvn clean install -DskipTests
 
 # Copy the packaged jar file into the container
 COPY target/GestionProjet-0.0.1-SNAPSHOT.jar /app/GestionProjet-0.0.1-SNAPSHOT.jar
